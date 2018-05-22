@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GTBay ListItem</title>
+</head>
+<body>
+<div id="main_container">
+
+    <div class="center_content">
+        <div class = "auction_form_container">
+            <div class = "auction_form_header">
+                <div class="title" style= "text-align: center"><h2>New Item For Auction</h2></div>
+            </div>
+
+            <div class="auction_form">
+                <form method="/items/list" enctype="multipart/form-data">
+
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="iname">Item Name</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" id="iname" name="item_name" value="">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="description">Description</label>
+                        </div>
+                        <div class="col-75">
+                            <textarea id="description" name="description" placeholder="Write something.." rows = "10" cols = "30" style="height:150px"><?php echo !empty($enteredDescription)?$enteredDescription:'';?></textarea>
+                            <span class = "error"><?php echo $descriptionError; ?></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="category">Category</label>
+                        </div>
+                        <div class="col-75">
+                            <select id= "category" name="category" >
+                                <option label = " " value=" "></option>
+                                <option value="Art">Art</option>
+                                <option value="Books">Books</option>
+                                <option value="Electronics">Electronics</option>
+                                <option value="Home & Garden">Home & Garden</option>
+                                <option value="Sporting Goods">Sporting Goods</option>
+                                <option value="Toys">Toys</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <script type="text/javascript">
+                                document.getElementById('category').value = "<?php echo $_POST['category'];?>";
+                            </script>
+                            <span class = "error"><?php echo $categoryError; ?></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="condition">Condition</label>
+                        </div>
+                        <div class="col-75">
+                            <select id= "condition" name="condition" >
+                                <option label = " " value=" " >[-blank-]</option>
+                                <option value='5'>New</option>
+                                <option value='4'>Very Good</option>
+                                <option value='3'>Good</option>
+                                <option value='2'>Fair</option>
+                                <option value='1'>Poor</option>
+                            </select>
+                            <script type="text/javascript">
+                                document.getElementById('condition').value = "<?php echo $_POST['condition'];?>";
+                            </script>
+                            <span class = "error"><?php echo $conditionError; ?></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="starting_bid">Starting auction bidding at $</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" id="starting_bid" name="starting_bid" value="<?php echo $flagStarting?$enteredStartingBid:'';?>"><span class = "error"><?php echo $startingbidError; ?></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="minimal_price">Minimal sale price $</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" id="minimal_price" name="minimal_price" value="<?php echo $flagMin?$enteredMinimalPrice:'';?>"><span class = "error"><?php echo $minpriceError; ?></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="auction_length">Auction ends in</label>
+                        </div>
+                        <div class="col-75">
+                            <select id = "auction_length" name="auction_length" >
+                                <option label = " " value=" ">[-blank-]</option>
+                                <option value="1">1 day</option>
+                                <option value="3">3 days</option>
+                                <option value="5">5 days</option>
+                                <option value="7">7 days</option>
+                            </select>
+                            <script type="text/javascript">
+                                document.getElementById('auction_length').value = "<?php echo $_POST['auction_length'];?>";
+                            </script>
+                            <span class = "error"><?php echo $auctionlengthError; ?></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="get_it_now_price">Get It Now Price $</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" id="get_it_now_price" name="get_it_now_price" value ="<?php echo (isset($_POST['get_it_now_price']))?$_POST['get_it_now_price']:'';?>">
+                            <label>(Optional)</label>
+                            <span class = "error"><?php echo $getItNowError; ?></span>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="returnable">Returns Accepted?</label>
+                        </div>
+                        <div class="col-75">
+                            <input id="returnable" type="checkbox" name="returnable" <?php if(isset($_POST['returnable'])) {?> checked <?php }; ?>><span class = error"><?php echo $returnError; ?></span>
+                        </div>
+                    </div>
+
+                    <div class = "auction_form_footer">
+                        <div class="row">
+                            <div class="inlineblock_left">
+                                <button type="submit" name = "cancel" formaction = "main_menu.php">Cancel</button>
+                            </div>
+                            <div class="inlineblock_right">
+                                <button type="submit" name = "list_item" formaction = "list_item.php">List My Item</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+
+        <div class="clear"></div>
+
+    </div>
+
+</div>
+</body>
+</html>
